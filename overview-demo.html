@@ -1,11 +1,37 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Overview Demo of jExcel</title>
+
   <script src="https://bossanova.uk/jexcel/v3/jexcel.js"></script>
   <link rel="stylesheet" href="https://bossanova.uk/jexcel/v3/jexcel.css" type="text/css" />
 
   <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
   <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" type="text/css" />
 
-  <p>You can click, type, select, right-click, add new rows/columns, and even "drag-copy":</p>
+  <style>
+    body {
+      background: rgb(32,32,32);
+      color: snow;
+      font-family: avenir, arial;
+    }
+
+    * {
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    #spreadsheet {
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  
+  <p>You can click, type, select, right-click for context menu, add new rows/columns, and even "drag-copy":</p>
 
   <div id="spreadsheet"></div>
 
@@ -84,4 +110,5 @@
       ]
     });
   </script>
+</body>
 </html>
