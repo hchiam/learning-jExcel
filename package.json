@@ -1,0 +1,13 @@
+{
+  "name": "learning-jExcel",
+  "version": "1.0.0",
+  "description": "Learning jExcel",
+  "main": "index.js",
+  "repository": "https://github.com/hchiam/learning-jExcel.git",
+  "author": "hchiam",
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {
+    "jexcel": "^3.7.0"
+  }
+}
