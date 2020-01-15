@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jExcel demo</title>
+
+  <script src="https://bossanova.uk/jexcel/v3/jexcel.js"></script>
+  <link rel="stylesheet" href="https://bossanova.uk/jexcel/v3/jexcel.css" type="text/css" />
+
+  <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
+  <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" type="text/css" />
+
+  <link rel="stylesheet" href="my-style.css">
+</head>
+
+<body>
+
+  <p>Double-click on a cell and then start typing <code>=</code> etc. as you would in Excel. <br />You can't select a
+    cell to get its cell reference. Just type things like <code>=B1+1</code></p>
+
+  <div id="spreadsheet"></div>
+
+  <p><a href="/">Back to main example</a></p>
+
+  <script>
+    var data = [
+      ['Crayons Crayola only (No Rose Art)', 2, '5.01', '=B1*C1'],
+      ['Colored Pencils Crayola only', 2, '4.41', '=B2*C2'],
+      ['Expo Dry-erase Markers Wide', 4, '3.00', '=B3*C3'],
+      ['Index Cards Unlined', 3, '6.00', '=B4*C4'],
+      ['Tissues', 10, '1.90', '=B5*C5'],
+      ['Ziploc Sandwich-size Bags', 5, '1.00', '=B6*C6'],
+      ['Thin Markers Crayola only', 2, '3.00', '=B7*C7'],
+      ['Highlighter', 4, '1.20', '=B8*C8'],
+      ['Total', '=SUM(B1:B8)', '=ROUND(SUM(C1:C8), 2)', '=SUM(D1:D8)'],
+    ];
+
+    jexcel(document.getElementById('spreadsheet'), {
+      data: data,
+      columns: [{
+          type: 'text',
+          title: 'Product',
+          width: '300'
+        },
+        {
+          type: 'text',
+          title: 'Qtd',
+          width: '80'
+        },
+        {
+          type: 'text',
+          title: 'Price',
+          width: '100'
+        },
+        {
+          type: 'text',
+          title: 'Total',
+          width: '100'
+        },
+      ],
+      updateTable: function (instance, cell, col, row, val, label, cellName) {
+        if (cell.innerHTML == 'Total') {
+          cell.parentNode.style.backgroundColor = '#fffaa3';
+        }
+        if (col == 3) {
+          if (parseFloat(label) > 10) {
+            cell.style.color = 'red';
+          } else {
+            cell.style.color = 'green';
+          }
+        }
+      },
+      // columnSorting:false,
+    });
+  </script>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +15,11 @@
 
   <link rel="stylesheet" href="my-style.css">
 </head>
+
 <body>
-  
-  <p>You can click, type, select, right-click for context menu, add new rows/columns, add comments, and even "drag-copy":</p>
+
+  <p>You can click, type, select, right-click for context menu, add new rows/columns, add comments, and even
+    "drag-copy":</p>
 
   <div id="spreadsheet"></div>
 
@@ -38,9 +41,6 @@
     <li>
       <a href="/merge">merge</a>
     </li>
-    <li>
-      <a href="/react">react</a>
-    </li>
   </ul>
 
   <script>
@@ -52,10 +52,9 @@
     jexcel(document.getElementById('spreadsheet'), {
       allowComments: true,
       data: data,
-      columns: [
-        {
+      columns: [{
           type: 'text',
-          title:'Car',
+          title: 'Car',
           width: 90
         },
         {
@@ -120,4 +119,5 @@
     });
   </script>
 </body>
+
 </html>

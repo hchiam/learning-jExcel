@@ -16,6 +16,10 @@ or
 yarn add jexcel
 ```
 
+## Start your learning of jExcel v3 here
+
+<https://bossanova.uk/jexcel/v3/docs>
+
 ## Live demo
 
 <https://codepen.io/hchiam/pen/mdyjqZj>
@@ -40,3 +44,7 @@ e.g.:
 - [Lazy loading](https://bossanova.uk/jexcel/v3/examples/lazy-loading)
 - [Cell merging](https://bossanova.uk/jexcel/v3/examples/merged-cells)
 - [Comments](https://bossanova.uk/jexcel/v3/examples/comments)
+
+## jExcel v3 API methods, events, initialization, and translations
+
+<https://bossanova.uk/jexcel/v3/docs/quick-reference>

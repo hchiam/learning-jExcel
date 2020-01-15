@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jExcel demo</title>
+
+  <script src="https://bossanova.uk/jexcel/v3/jexcel.js"></script>
+  <link rel="stylesheet" href="https://bossanova.uk/jexcel/v3/jexcel.css" type="text/css" />
+
+  <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
+  <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" type="text/css" />
+
+  <link rel="stylesheet" href="my-style.css">
+</head>
+
+<body>
+
+  <p>To merge cells, you have to do it programmatically (for now).</p>
+
+  <div id="spreadsheet"></div>
+
+  <button type="button" onclick="table.setMerge('A3', 2, 2);">Merge cell A3 (colspan: 2, rowspan: 2)</button>
+  <button type="button" onclick="table.removeMerge('A3');">Destroy merge from A3</button>
+  <button type="button" onclick="document.getElementById('console').innerHTML = JSON.stringify(table.getMerge());">Get
+    all merged cells</button>
+  <button type="button" onclick="table.destroyMerged();">Destroy all merged</button>
+
+  <p><a href="/">Back to main example</a></p>
+
+  <script>
+    var data = [
+      ['Mazda', 2001, 2000, '2006-01-01'],
+      ['Pegeout', 2010, 5000, '2005-01-01'],
+      ['Honda Fit', 2009, 3000, '2004-01-01'],
+      ['Honda CRV', 2010, 6000, '2003-01-01'],
+    ];
+
+    var table = jexcel(document.getElementById('spreadsheet'), {
+      data: data,
+      colHeaders: ['Model', 'Year', 'Price', 'Date'],
+      colWidths: [300, 80, 100, 100],
+      columns: [{
+          type: 'text'
+        },
+        {
+          type: 'text'
+        },
+        {
+          type: 'text'
+        },
+        {
+          type: 'calendar'
+        },
+      ],
+      mergeCells: {
+        A1: [2, 1]
+      },
+      minDimensions: [10, 10]
+    });
+  </script>
+</body>
+
+</html>

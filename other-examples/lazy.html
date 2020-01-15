@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jExcel demo</title>
+
+    <script src="https://bossanova.uk/jexcel/v3/jexcel.js"></script>
+    <link rel="stylesheet" href="https://bossanova.uk/jexcel/v3/jexcel.css" type="text/css" />
+
+    <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
+    <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" type="text/css" />
+
+    <link rel="stylesheet" href="my-style.css">
+</head>
+
+<body>
+
+    <p><code>csv:'https://bossanova.uk/jexcel/demo1.csv',</code></p>
+
+    <div id="spreadsheet"></div>
+
+    <p><a href="/">Back to main example</a></p>
+
+    <script>
+        jexcel(document.getElementById('spreadsheet'), {
+            csv: 'https://bossanova.uk/jexcel/demo1.csv',
+            csvHeaders: false,
+            tableOverflow: true,
+            lazyLoading: true,
+            loadingSpin: true,
+            columns: [{
+                    type: 'text',
+                    width: 200,
+                    title: 'Name'
+                },
+                {
+                    type: 'dropdown',
+                    width: 100,
+                    title: 'Age',
+                    source: [{
+                            id: 1,
+                            name: 'Male'
+                        },
+                        {
+                            id: 2,
+                            name: 'Female'
+                        }
+                    ]
+                },
+                {
+                    type: 'text',
+                    width: 200,
+                    title: 'City'
+                },
+            ]
+        });
+    </script>
+</body>
+
+</html>

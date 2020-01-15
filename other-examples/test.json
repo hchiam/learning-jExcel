@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "name": "Paul Hodel",
+      "id": "3"
+    },
+    {
+      "name": "Cosme Sergio",
+      "id": "4"
+    },
+    {
+      "name": "Jorgina Santos",
+      "id": "5"
+    }
+  ],
+  "columns": [
+    {
+      "type": "text",
+      "width": "300",
+      "name": "id"
+    },
+    {
+      "type": "text",
+      "width": "100",
+      "name": "name"
+    }
+  ]
+}

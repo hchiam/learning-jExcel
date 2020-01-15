@@ -4,10 +4,17 @@
   transition: 0.25s;
 }
 
-body {
+body, textarea {
   background: rgb(32,32,32);
   color: snow;
   font-family: avenir, arial;
+}
+
+code {
+  background: rgb(20,20,20);
+  color: lime;
+  padding: 5px;
+  font-family: monospace;
 }
 
 #spreadsheet {
@@ -25,4 +32,8 @@ a:hover {
 button:hover {
   background: lime;
   color: black;
+}
+
+textarea {
+  margin: 10px;
 }
