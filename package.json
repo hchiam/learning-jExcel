@@ -6,8 +6,11 @@
   "repository": "https://github.com/hchiam/learning-jExcel.git",
   "author": "hchiam",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
+    "express": "^4.17.1",
     "jexcel": "^3.7.0"
   }
 }

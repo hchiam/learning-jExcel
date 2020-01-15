@@ -23,8 +23,20 @@ yarn add jexcel
 ```bash
 git clone https://github.com/hchiam/learning-jExcel.git
 yarn # or npm install
+yarn start # or npm run start
 ```
 
-## Investigate later: adding comments to cells?
+and then: <http://localhost:8000>
 
-<https://bossanova.uk/jexcel/v2/examples/comments>
+## jExcel v3 examples
+
+<https://bossanova.uk/jexcel/v3/examples>
+
+e.g.:
+
+- [React implementation](https://bossanova.uk/jexcel/v3/examples/react)
+- [Formulas](https://bossanova.uk/jexcel/v3/examples/spreadsheet-formulas)
+- [Data import](https://bossanova.uk/jexcel/v3/examples/import-data)
+- [Lazy loading](https://bossanova.uk/jexcel/v3/examples/lazy-loading)
+- [Cell merging](https://bossanova.uk/jexcel/v3/examples/merged-cells)
+- [Comments](https://bossanova.uk/jexcel/v3/examples/comments)
