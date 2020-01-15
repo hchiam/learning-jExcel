@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jExcel demo</title>
+
+  <script src="https://bossanova.uk/jexcel/v3/jexcel.js"></script>
+  <link rel="stylesheet" href="https://bossanova.uk/jexcel/v3/jexcel.css" type="text/css" />
+
+  <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
+  <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" type="text/css" />
+
+  <link rel="stylesheet" href="my-style.css">
+</head>
+<body>
+
+  <p>Right click on a cell and then "Add comments". Hover over a red triangle to see the comment.</p>
+
+  <div id="spreadsheet"></div>
+    
+  <button type="button" onclick="mySpreadsheet.setComments('A1', 'This is the comments from A1');" style="width:220px;">Set A1 comments</button>
+  <button type="button" onclick="alert(mySpreadsheet.getComments('A1'));" style="width:220px;">Get A1 comments</button>
+  <button type="button" onclick="mySpreadsheet.setComments('A1', '');" style="width:220px;">Reset A1 comments</button>
+
+  <p><a href="/">Back to main example</a></p>
+
+
+  <script>
+    var data1 = [
+        ['US', 'Cheese', '2019-02-12'],
+        ['CA', 'Apples', '2019-03-01'],
+        ['CA', 'Carrots', '2018-11-10'],
+        ['BR', 'Oranges', '2019-01-12'],
+    ];
+    
+    mySpreadsheet = jexcel(document.getElementById('spreadsheet'), {
+        data:data1,
+        columns: [
+            {
+                type: 'text',
+                width:200,
+            },
+            {
+                type: 'text',
+                width:200,
+            },
+            {
+                type: 'calendar',
+                width:200,
+            }
+         ],
+         allowComments:true, // This is all you need!
+    });
+    </script>
+</body>
+</html>

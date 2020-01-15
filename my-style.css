@@ -1,0 +1,28 @@
+*:not(td) {
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.25s;
+}
+
+body {
+  background: rgb(32,32,32);
+  color: snow;
+  font-family: avenir, arial;
+}
+
+#spreadsheet {
+  color: black;
+}
+
+a {
+  color: lightblue;
+}
+
+a:hover {
+  color: lime;
+}
+
+button:hover {
+  background: lime;
+  color: black;
+}

@@ -12,28 +12,36 @@
   <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
   <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" type="text/css" />
 
-  <style>
-    body {
-      background: rgb(32,32,32);
-      color: snow;
-      font-family: avenir, arial;
-    }
-
-    * {
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    #spreadsheet {
-      color: black;
-    }
-  </style>
+  <link rel="stylesheet" href="my-style.css">
 </head>
 <body>
   
-  <p>You can click, type, select, right-click for context menu, add new rows/columns, and even "drag-copy":</p>
+  <p>You can click, type, select, right-click for context menu, add new rows/columns, add comments, and even "drag-copy":</p>
 
   <div id="spreadsheet"></div>
+
+  <p>Other examples:</p>
+
+  <ul>
+    <li>
+      <a href="/comments">comments</a>
+    </li>
+    <li>
+      <a href="/formulas">formulas</a>
+    </li>
+    <li>
+      <a href="/import">import</a>
+    </li>
+    <li>
+      <a href="/lazy">lazy</a>
+    </li>
+    <li>
+      <a href="/merge">merge</a>
+    </li>
+    <li>
+      <a href="/react">react</a>
+    </li>
+  </ul>
 
   <script>
     var data = [
@@ -42,18 +50,19 @@
     ];
 
     jexcel(document.getElementById('spreadsheet'), {
-      data:data,
+      allowComments: true,
+      data: data,
       columns: [
         {
           type: 'text',
           title:'Car',
-          width:90
+          width: 90
         },
         {
           type: 'dropdown',
-          title:'Make',
-          width:120,
-          source:[
+          title: 'Make',
+          width: 120,
+          source: [
             "Alfa Romeo",
             "Audi",
             "Bmw",
@@ -82,30 +91,30 @@
         },
         {
           type: 'calendar',
-          title:'Available',
-          width:120
+          title: 'Available',
+          width: 120
         },
         {
           type: 'image',
-          title:'Photo',
-          width:120
+          title: 'Photo',
+          width: 120
         },
         {
           type: 'checkbox',
-          title:'Stock',
-          width:80
+          title: 'Stock',
+          width: 80
         },
         {
           type: 'numeric',
-          title:'Price',
-          mask:'$ #.##,00',
-          width:80,
-          decimal:','
+          title: 'Price',
+          mask: '$ #.##,00',
+          width: 80,
+          decimal: ','
         },
         {
           type: 'color',
-          width:80,
-          render:'square',
+          width: 80,
+          render: 'square',
         },
       ]
     });
