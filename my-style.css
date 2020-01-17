@@ -4,6 +4,10 @@
   transition: 0.25s;
 }
 
+.jexcel_contextmenu.jcontextmenu hr {
+  padding: 0;
+}
+
 body, textarea {
   background: rgb(32,32,32);
   color: snow;

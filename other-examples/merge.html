@@ -63,37 +63,206 @@
       minDimensions: [10, 10],
       allowComments: true,
       contextMenu: function(obj, x, y, e) {
-        return [
-          {
-            title: 'Merge',
-            onclick:function() {
-              var [x1, y1, x2, y2] = obj.selectedCell; 
-              if (x1 === x2 && y1 === y2) return;
-              if (x2 < x1 || y2 < y1) {
-                [x1, x2] = [x2, x1];
-                [y1, y2] = [y2, y1];
-              }
-              var cell1 = jexcel.getColumnName(x1) + (parseInt(y1)+1);
-              var cell2 = jexcel.getColumnName(x2) + (parseInt(y2)+1);
-              var dx = x2 - x1 + 1;
-              var dy = y2 - y1 + 1;
-              table.removeMerge(cell1); // in case cell is already merged
-              table.removeMerge(cell2); // in case cell is already merged
-              table.setMerge(cell1, dx, dy);
+        var items = defaultContextMenuItems(obj, x, y, e);
+        items.push({ type: 'line' });
+        var merge = {
+          title: 'Merge',
+          onclick:function() {
+            var [x1, y1, x2, y2] = obj.selectedCell; 
+            if (x1 === x2 && y1 === y2) return;
+            if (x2 < x1 || y2 < y1) {
+              [x1, x2] = [x2, x1];
+              [y1, y2] = [y2, y1];
             }
-          },
-          {
-            title: 'Un-merge',
-            onclick:function() {
-              var columnLetter = jexcel.getColumnName(obj.selectedCell[0]);
-              var rowNumber = parseInt(obj.selectedCell[1]) + 1;
-              var cellName = columnLetter + rowNumber;
-              table.removeMerge(cellName);
-            }
-          },
-        ];
+            var cell1 = jexcel.getColumnName(x1) + (parseInt(y1)+1);
+            var cell2 = jexcel.getColumnName(x2) + (parseInt(y2)+1);
+            var dx = x2 - x1 + 1;
+            var dy = y2 - y1 + 1;
+            table.removeMerge(cell1); // in case cell is already merged
+            table.removeMerge(cell2); // in case cell is already merged
+            table.setMerge(cell1, dx, dy);
+          }
+        };
+        var unMerge = {
+          title: 'Un-merge',
+          onclick:function() {
+            var columnLetter = jexcel.getColumnName(obj.selectedCell[0]);
+            var rowNumber = parseInt(obj.selectedCell[1]) + 1;
+            var cellName = columnLetter + rowNumber;
+            table.removeMerge(cellName);
+          }
+        };
+        items.push(merge);
+        items.push(unMerge);
+        return items;
       }
     });
+
+    function defaultContextMenuItems(obj, x, y, e) {
+      var items = [];
+
+      if (y == null) {
+          // Insert a new column
+          if (obj.options.allowInsertColumn == true) {
+              items.push({
+                  title:obj.options.text.insertANewColumnBefore,
+                  onclick:function() {
+                      obj.insertColumn(1, parseInt(x), 1);
+                  }
+              });
+          }
+
+          if (obj.options.allowInsertColumn == true) {
+              items.push({
+                  title:obj.options.text.insertANewColumnAfter,
+                  onclick:function() {
+                      obj.insertColumn(1, parseInt(x), 0);
+                  }
+              });
+          }
+
+          // Delete a column
+          if (obj.options.allowDeleteColumn == true) {
+              items.push({
+                  title:obj.options.text.deleteSelectedColumns,
+                  onclick:function() {
+                      obj.deleteColumn(obj.getSelectedColumns().length ? undefined : parseInt(x));
+                  }
+              });
+          }
+
+          // Rename column
+          if (obj.options.allowRenameColumn == true) {
+              items.push({
+                  title:obj.options.text.renameThisColumn,
+                  onclick:function() {
+                      obj.setHeader(x);
+                  }
+              });
+          }
+
+          // Sorting
+          if (obj.options.columnSorting == true) {
+              // Line
+              items.push({ type:'line' });
+
+              items.push({
+                  title:obj.options.text.orderAscending,
+                  onclick:function() {
+                      obj.orderBy(x, 0);
+                  }
+              });
+              items.push({
+                  title:obj.options.text.orderDescending,
+                  onclick:function() {
+                      obj.orderBy(x, 1);
+                  }
+              });
+          }
+      } else {
+          // Insert new row
+          if (obj.options.allowInsertRow == true) {
+              items.push({
+                  title:obj.options.text.insertANewRowBefore,
+                  onclick:function() {
+                      obj.insertRow(1, parseInt(y), 1);
+                  }
+              });
+
+              items.push({
+                  title:obj.options.text.insertANewRowAfter,
+                  onclick:function() {
+                      obj.insertRow(1, parseInt(y));
+                  }
+              });
+          }
+
+          if (obj.options.allowDeleteRow == true) {
+              items.push({
+                  title:obj.options.text.deleteSelectedRows,
+                  onclick:function() {
+                      obj.deleteRow(obj.getSelectedRows().length ? undefined : parseInt(y));
+                  }
+              });
+          }
+
+          if (x) {
+              if (obj.options.allowComments == true) {
+                  items.push({ type:'line' });
+
+                  var title = obj.records[y][x].getAttribute('title') || '';
+
+                  items.push({
+                      title: title ? obj.options.text.editComments : obj.options.text.addComments,
+                      onclick:function() {
+                          obj.setComments([ x, y ], prompt(obj.options.text.comments, title));
+                      }
+                  });
+
+                  if (title) {
+                      items.push({
+                          title:obj.options.text.clearComments,
+                          onclick:function() {
+                              obj.setComments([ x, y ], '');
+                          }
+                      });
+                  }
+              }
+          }
+      }
+
+      // Line
+      items.push({ type:'line' });
+
+      // Copy
+      items.push({
+          title:obj.options.text.copy,
+          shortcut:'Ctrl + C',
+          onclick:function() {
+              obj.copy(true);
+          }
+      });
+
+      // Paste
+      if (navigator && navigator.clipboard) {
+          items.push({
+              title:obj.options.text.paste,
+              shortcut:'Ctrl + V',
+              onclick:function() {
+                  if (obj.selectedCell) {
+                      navigator.clipboard.readText().then(function(text) {
+                          if (text) {
+                              jexcel.current.paste(obj.selectedCell[0], obj.selectedCell[1], text);
+                          }
+                      });
+                  }
+              }
+          });
+      }
+
+      // Save
+      if (obj.options.allowExport) {
+          items.push({
+              title: obj.options.text.saveAs,
+              shortcut: 'Ctrl + S',
+              onclick: function () {
+                  obj.download();
+              }
+          });
+      }
+
+      // About
+      if (obj.options.about) {
+          items.push({
+              title:obj.options.text.about,
+              onclick:function() {
+                  alert(obj.options.about);
+              }
+          });
+      }
+
+      return items;
+    }
   </script>
 </body>
 
