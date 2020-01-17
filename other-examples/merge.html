@@ -18,22 +18,24 @@
 
 <body>
 
-  <p>To merge cells, you have to do it programmatically (for now).</p>
+  <p>To merge cells, you have to do it programmatically by adding it to: <a href="https://bossanova.uk/jexcel/v3/examples/contextmenu" target="_blank">context menu</a></p>
 
   <div id="spreadsheet"></div>
 
-  <button type="button" onclick="table.setMerge('A3', 2, 2);">Merge cell A3 (colspan: 2, rowspan: 2)</button>
-  <button type="button" onclick="table.removeMerge('A3');">Destroy merge from A3</button>
-  <button type="button" onclick="document.getElementById('console').innerHTML = JSON.stringify(table.getMerge());">Get
-    all merged cells</button>
-  <button type="button" onclick="table.destroyMerged();">Destroy all merged</button>
+  <div>
+    <p>Here are some buttons for quick programmatic examples:</p>
+    <button type="button" onclick="table.setMerge('A3', 2, 2);">Merge cell A3 (colspan: 2, rowspan: 2)</button>
+    <button type="button" onclick="table.removeMerge('A3');">Destroy merge from A3</button>
+    <button type="button" onclick="document.getElementById('console').innerHTML = JSON.stringify(table.getMerge());">Get all merged cells</button>
+    <button type="button" onclick="table.destroyMerged();">Destroy all merged</button>
+  </div>
 
   <p><a href="/">Back to main example</a></p>
 
   <script>
     var data = [
       ['Mazda', 2001, 2000, '2006-01-01'],
-      ['Pegeout', 2010, 5000, '2005-01-01'],
+      ['Peugeot', 2010, 5000, '2005-01-01'],
       ['Honda Fit', 2009, 3000, '2004-01-01'],
       ['Honda CRV', 2010, 6000, '2003-01-01'],
     ];
@@ -58,7 +60,39 @@
       mergeCells: {
         A1: [2, 1]
       },
-      minDimensions: [10, 10]
+      minDimensions: [10, 10],
+      allowComments: true,
+      contextMenu: function(obj, x, y, e) {
+        return [
+          {
+            title: 'Merge',
+            onclick:function() {
+              var [x1, y1, x2, y2] = obj.selectedCell; 
+              if (x1 === x2 && y1 === y2) return;
+              if (x2 < x1 || y2 < y1) {
+                [x1, x2] = [x2, x1];
+                [y1, y2] = [y2, y1];
+              }
+              var cell1 = jexcel.getColumnName(x1) + (parseInt(y1)+1);
+              var cell2 = jexcel.getColumnName(x2) + (parseInt(y2)+1);
+              var dx = x2 - x1 + 1;
+              var dy = y2 - y1 + 1;
+              table.removeMerge(cell1); // in case cell is already merged
+              table.removeMerge(cell2); // in case cell is already merged
+              table.setMerge(cell1, dx, dy);
+            }
+          },
+          {
+            title: 'Un-merge',
+            onclick:function() {
+              var columnLetter = jexcel.getColumnName(obj.selectedCell[0]);
+              var rowNumber = parseInt(obj.selectedCell[1]) + 1;
+              var cellName = columnLetter + rowNumber;
+              table.removeMerge(cellName);
+            }
+          },
+        ];
+      }
     });
   </script>
 </body>
