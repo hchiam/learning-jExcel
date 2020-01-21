@@ -52,3 +52,5 @@ e.g.:
 ## React example
 
 [In this repo](https://github.com/hchiam/learning-jExcel/blob/master/Jexcel.js) or [in a working example React app](https://github.com/hchiam/react-jexcel-redux/blob/345406858b22304242db3e11a9e765829055cb19/src/components/Jexcel.js).
+
+Helpful example of adding data to redux state container: <https://github.com/hchiam/react-jexcel-redux/commit/90db044627780ed6262f5e29bb61a24390a4d4b3>
