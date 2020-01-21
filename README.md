@@ -48,3 +48,7 @@ e.g.:
 ## jExcel v3 API methods, events, initialization, and translations
 
 <https://bossanova.uk/jexcel/v3/docs/quick-reference>
+
+## React example
+
+[In this repo](https://github.com/hchiam/learning-jExcel/blob/master/Jexcel.js) or [in a working example React app](https://github.com/hchiam/react-jexcel-redux/blob/345406858b22304242db3e11a9e765829055cb19/src/components/Jexcel.js).
