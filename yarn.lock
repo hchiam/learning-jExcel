@@ -219,17 +219,17 @@ ipaddr.js@1.9.1:
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.9.1.tgz#bff38543eeb8984825079ff3a2a8e6cbd46781b3"
   integrity sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==
 
-jexcel@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/jexcel/-/jexcel-3.7.0.tgz#1e58957476f53756d7d5c4f6b09b8fa805560d77"
-  integrity sha512-aDnDeqLoyeQnL27AeR2vLir7Jo2nUBlDd+utUO1h1pmoRpLrqETM6EiOpAGKBKvXH728Di9lJm4dD2KxmigTqA==
+jexcel@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/jexcel/-/jexcel-4.6.1.tgz#13652ea5c9d9ce0bf3d7443c9ebd67d3a1b0390f"
+  integrity sha512-vhQUAszV5MAbOKbRo3c5JHLHgrmxsU44yNhKqzWCZmi/s75vTyzP5/xJw0gLnQrGQGaH/1sUjtqU0TB9L0sQ8A==
   dependencies:
-    jsuites "^2.3.0"
+    jsuites "^4.1.0"
 
-jsuites@^2.3.0:
-  version "2.5.5"
-  resolved "https://registry.yarnpkg.com/jsuites/-/jsuites-2.5.5.tgz#2ccab410ce55abc7cd05e84e55fca5ce11286229"
-  integrity sha512-sHegCDww5X1ZdOA3nI7CUdN57411PyukneHDuBELbLdHvO4MoOhop7jc21PzTE43kTk/jbFFTZ7QHjtCNLAU5A==
+jsuites@^4.1.0:
+  version "4.17.5"
+  resolved "https://registry.yarnpkg.com/jsuites/-/jsuites-4.17.5.tgz#b0f5a028c3884e9b764dbaa972a215862580b7e9"
+  integrity sha512-mkz8K3R275k1XpiBnzjDEKaVOwZKts+LicUqZo563xa6cUfeKQYrrPhEZ2QEa6l0wV6f51cKXZiqDnN5W/ixrw==
 
 media-typer@0.3.0:
   version "0.3.0"
