@@ -11,6 +11,6 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "jexcel": "^3.7.0"
+    "jexcel": "^4.6.1"
   }
 }
